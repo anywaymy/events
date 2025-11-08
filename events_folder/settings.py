@@ -45,7 +45,8 @@ THIRD_PARTY_APPS = [
 
 # Список наших приложений
 LOCAL_APPS = [
-    'apps.main'
+    'apps.main',
+    'apps.users',
 ]
 
 
@@ -142,6 +143,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Указываем базовый редирект при логине
 LOGIN_REDIRECT_URL = '/'
 
+
+AUTH_USER_MODEL = "users.User"
 
 # Указываем базовый редирект при логауте
 LOGOUT_REDIRECT_URL = '/'
