@@ -8,6 +8,7 @@ from apps.users.validators import validate_image_format
 def user_directory_path(instance, filename):
     return f"{instance.username}/users/images/{filename}"
 
+
 class User(AbstractUser):
     ROLE_CHOICES = [
         ('admin', 'admin'),
@@ -30,3 +31,7 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
         ordering = ['-created_at']
+
+
+# class Profile(models.Model):
+#     user = models.OneToOneField(to=User, on_delete=models.CASCADE)

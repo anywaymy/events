@@ -17,20 +17,15 @@
 </header>
 <main>
     <section class="events-grid">
-        <article class="event-card">
-<!--            <img src="https://via.placeholder.com/400x250?text=Концерт" alt="Концерт рок-группы"/>-->
-            <h2>Концерт рок-группы</h2>
-            <p>Выступление популярной рок-группы. Не пропустите!</p>
-            <p class="date">Дата: 2024-05-20</p>
-            <a href="event_detail.html?id=1" class="btn">Подробнее</a>
-        </article>
-        <article class="event-card">
-<!--            <img src="https://via.placeholder.com/400x250?text=Класс" alt="Кулинарный мастер-класс"/>-->
-            <h2>Кулинарный мастер-класс</h2>
-            <p>Узнайте секреты французской кухни.</p>
-            <p class="date">Дата: 2024-06-10</p>
-            <a href="event_detail.html?id=2" class="btn">Подробнее</a>
-        </article>
+        {% for event in object_list %}
+            <article class="event-card">
+                <!--            <img src="https://via.placeholder.com/400x250?text=Концерт" alt="Концерт рок-группы"/>-->
+                <h2>{{event.title}}</h2>
+                <p>{{event.content}}!</p>
+                <p class="date">Дата проведения: {{event.date_of_events|date:"d:m:Y"}} в {{event.date_of_events|date:"H:i"}}</p>
+                <a href="event_detail.html?id=1" class="btn">Подробнее</a>
+            </article>
+        {% endfor %}
     </section>
 </main>
 </body>

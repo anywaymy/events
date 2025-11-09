@@ -5,7 +5,9 @@ class Events(models.Model):
     title = models.CharField(max_length=250, unique=True, help_text="Введите название мероприятия")
     slug = models.SlugField(max_length=250, unique=True, help_text="Автоматически заполнится содержимым поля 'title'")
     content = models.TextField(max_length=500, help_text="Введите описание мероприятия")
+    location = models.CharField(max_length=250, help_text="Место проведения", default='')
     date_of_events = models.DateTimeField(help_text="Дата проведения")
+    duration = models.CharField(max_length=9, help_text="Длительность", default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):

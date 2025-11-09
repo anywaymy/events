@@ -18,7 +18,11 @@ class EventsAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'content', 'date_of_events')}
         ),
 
+        ('Доп информация', {
+            'fields': ('location', 'duration')}
+         ),
+
         ('Временные метки', {
             'fields': ('created_at',)}
-         )
+        )
     )
