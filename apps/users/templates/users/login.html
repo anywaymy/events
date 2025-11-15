@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+{% extends 'users/base.html' %}
+{% block content %}
 
-</head>
-<body>
-<!-- Страница входа -->
-<div class="auth-container">
-  <h2>Вход</h2>
-  <form class="auth-form" action="/login" method="POST">
-    <label for="username">Email</label>
-    <input type="text" id="username" name="email" placeholder="Введите ваш username" required>
 
-    <label for="password">Пароль</label>
-    <input type="password" id="password" name="password" placeholder="Введите пароль" required>
 
+<h2>Вход</h2>
+<form class="auth-form" action="{% url 'users:login' %}" method="POST">
+    {% csrf_token %}
+    <label for="{{form.username.id_for_label}}">Email</label>
+    {{ form.username }}
+
+    <label for="{{form.password.id_for_label}}">Пароль</label>
+    {{ form.password }}
     <button class="btn" type="submit">Войти</button>
     <p>Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
-  </form>
-</div>
-</body>
-</html>
+</form>
+{% endblock %}

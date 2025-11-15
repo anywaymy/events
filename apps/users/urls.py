@@ -1,0 +1,22 @@
+from django.urls import path
+
+from .views import (UserLoginView, UserRegistrationView,
+                    UserPasswordResetView, UserPasswordResetConfirmView,
+                    password_reset_complete, get_messages_from_db, logout)
+
+app_name = "users"
+
+urlpatterns = [
+    # user auth
+    path('login/', UserLoginView.as_view(), name="login"),
+    path('registration/', UserRegistrationView.as_view(), name="registration"),
+    path('logout/', logout, name="logout"),
+
+    # user recovery
+    path('reset/', UserPasswordResetView.as_view(), name="reset"),
+    path('password_confirm/<uuid:code>/', UserPasswordResetConfirmView.as_view(), name="password-confirm"),
+    path('password_reset_complete/', password_reset_complete, name="password_reset_complete"),
+
+    # получить сообщения
+    path('get_messages/', get_messages_from_db, name="get_messages_from_db"),
+]

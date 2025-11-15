@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<h2>Регистрация</h2>
+<form class="auth-form" action="{% url 'users:registration' %}" method="POST">
+    {% csrf_token %}
+    <label for="{{ form.username.id_for_email }}">Имя</label>
+    {{ form.username }}
+
+    <label for="{{ form.email.id_for_email }}">Email</label>
+    {{ form.email }}
+
+    <label for="{{ form.password1.id_for_email }}">Пароль</label>
+    {{ form.password1 }}
+
+    <label for="{{ form.password2.id_for_email }}">Пароль</label>
+    {{ form.password2 }}
+
+    <button class="btn" type="submit">Зарегистрироваться</button>
+    <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+</form>
+{% endblock %}
