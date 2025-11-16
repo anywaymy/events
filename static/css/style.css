@@ -85,6 +85,7 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
