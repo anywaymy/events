@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import Events
 from apps.users.models import UserMessage
 
-
+# View для отображения всех мероприятий
 class MainView(ListView):
     model = Events
     template_name = "main/index.html"
@@ -21,3 +21,8 @@ class MainView(ListView):
             context['message_status'] = UserMessage.objects.filter(user=self.request.user, is_read=False)
 
         return context
+
+
+# class EventDetailView(DetailView):
+#     model = Events
+#     template_name = "main/event_detail.html"

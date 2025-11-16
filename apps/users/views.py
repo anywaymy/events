@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.views import LoginView
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, TemplateView, FormView, View
+from django.views.generic import CreateView, TemplateView, FormView, View, DetailView
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -85,6 +85,19 @@ class UserPasswordResetConfirmView(View):
             form.save()
             token_obj.delete()
             return redirect("users:password_reset_complete")
+
+
+# View для профиля пользователя
+class UserProfileView(TemplateView):
+    template_name = "users/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated:
+            context['message_status'] = UserMessage.objects.filter(user=self.request.user, is_read=False)
+
+        return context
 
 
 # Получение сообщений пользователя

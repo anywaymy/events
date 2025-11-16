@@ -7,7 +7,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.main.urls', namespace="main")),
-    path('users/', include('apps.users.urls', namespace="users"))
+    path('users/', include('apps.users.urls', namespace="users")),
+    path('events/', include('apps.booking.urls', namespace="events"))
 ]
 
 if settings.DEBUG:

@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'apps.main',
     'apps.users',
+    'apps.booking',
 ]
 
 

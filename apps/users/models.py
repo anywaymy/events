@@ -10,7 +10,7 @@ from apps.users.validators import validate_image_format
 
 # Функция, которая создаёт уникальную папку исходя из имени пользователя
 def user_directory_path(instance, filename):
-    return f"{instance.username}/users/images/{filename}"
+    return f"users/{instance.username}/images/{filename}"
 
 # Модель пользователя
 class User(AbstractUser):

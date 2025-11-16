@@ -15,7 +15,7 @@ class EventsAdmin(admin.ModelAdmin):
     fieldsets = (
         # Группировка полей
         ('Основная информация', {
-            'fields': ('title', 'slug', 'content', 'date_of_events')}
+            'fields': ('title', 'slug', 'content', "image", 'date_of_events', 'max_places')}
         ),
 
         ('Доп информация', {

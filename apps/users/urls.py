@@ -1,15 +1,16 @@
 from django.urls import path
 
 from .views import (UserLoginView, UserRegistrationView,
-                    UserPasswordResetView, UserPasswordResetConfirmView,
+                    UserPasswordResetView, UserPasswordResetConfirmView, UserProfileView,
                     password_reset_complete, get_messages_from_db, logout)
 
 app_name = "users"
 
 urlpatterns = [
-    # user auth
+    # user auth && profile
     path('login/', UserLoginView.as_view(), name="login"),
     path('registration/', UserRegistrationView.as_view(), name="registration"),
+    path('profile/', UserProfileView.as_view(), name="profile"),
     path('logout/', logout, name="logout"),
 
     # user recovery

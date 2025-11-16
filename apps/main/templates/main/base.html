@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Список мероприятий</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<header>
+    <h1 class="logo"><a href="{% url 'main:index' %}">Мероприятия</a></h1>
+    <nav>
+        <a href="{% url 'main:index' %}">Главная</a>
+
+        <!-- Обертка для "Профиль" + меню -->
+    <div class="profile-menu-wrapper" style="display: inline-block; position: relative;">
+        {% if request.user.is_authenticated %}
+            <a href="#" class="profile-link" id="profileLink"><span class="username">{{request.user.username}}</span>Профиль</a>
+        {% else %}
+            <a href="#" class="profile-link" id="profileLink">Профиль</a>
+        {% endif %}
+
+        <!-- Выпадающее меню -->
+        <div id="profileDropdown"
+             style="display: none; position: absolute; top: 100%; left: -24px; min-width: 150px; background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1000;">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'users:profile' %}" style="display: block; padding: 8px 12px; text-decoration: none; color: #009be7;">{{request.user.username}}</a>
+
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <a href="{% url 'admin:index' %}" style="display: block; padding: 8px 12px; text-decoration: none; color: #000;">админка</a>
+                {% endif %}
+
+                <a href="{% url 'users:logout' %}" style="display: block; padding: 8px 12px; text-decoration: none; color: #000;">Выйти</a>
+
+            {% else %}
+                <a href="{% url 'users:login' %}" style="display: block; padding: 8px 12px; text-decoration: none; color: #000;">Войти</a>
+                <a href="{% url 'users:registration' %}" style="display: block; padding: 8px 12px; text-decoration: none; color: #000;">Регистрация</a>
+            {% endif %}
+        </div>
+    </div>
+
+        {% if request.user.is_authenticated %}
+        <div class="notification-container">
+            <button id="notif-bell" class="notification-bell" title="Уведомления">
+                🔔
+                <span class="badge" style="{% if message_status.exists %}display: block;{% else %}display: none;{% endif %}" id="notif-count"></span>
+            </button>
+        </div>
+        {% endif %}
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

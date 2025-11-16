@@ -7,6 +7,26 @@ body {
   color: #333;
 }
 
+button {
+    border: none;
+}
+
+.event-detail img, .event-card img {
+    width: 100%;
+    height: 100%;
+}
+
+#status-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #444; color: #fff; padding: 15px 20px; border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+
 /* Хедер (шапка сайта) */
 header {
   display: flex;
@@ -23,8 +43,12 @@ header {
 header h1 {
   margin: 0;
   font-size: 2em;
-  color: #2c3e50;
 }
+header h1 a {
+    text-decoration: none;
+    color: #2c3e50;
+}
+
 
 nav a {
   margin-left: 20px;
@@ -145,6 +169,10 @@ h1, h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #2c3e50;
+}
+
+.reset {
+    text-align: center;
 }
 
 /* Стиль для формы */
@@ -284,4 +312,93 @@ h1, h2 {
 .modal__item {
     display: flex;
     justify-content: space-between;
+}
+
+/* Основной контейнер профиля */
+.profile-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  border: 2px solid #ccc;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nickname {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.join-date {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.section-title {
+  align-self: flex-start;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  color: #2c3e50;
+}
+
+.events-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.event-item {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.event-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+.event-details {
+  font-size: 0.95em;
+  color: #555;
+}
+
+
+.disabled-btn {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
 }

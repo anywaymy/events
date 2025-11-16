@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
+{% block content %}
+<!-- Модальное окно -->
+    <div id="notificationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Уведомления</h2>
+            <div id="notificationsList">
 
-</body>
-</html>
+            </div>
+        </div>
+    </div>
+
+<div class="profile-container">
+  <!-- Заголовок профиля -->
+  <div class="profile-header">
+    <img src="{{ user.image.url }}" alt="Аватар" class="avatar"/>
+    <div class="user-info">
+      <div class="nickname">{{ user.username }}</div>
+      <div class="join-date">Дата регистрации: {{ user.created_at|date:"d.m.y" }}</div>
+    </div>
+  </div>
+
+  <!-- Забронированные мероприятия -->
+  <div class="section-title">Забронированные мероприятия</div>
+  <div class="events-list">
+    {% for booked_event in user.bookings.all %}
+    <div class="event-item">
+      <div class="event-title">{{booked_event.event.title}}</div>
+      <div class="event-details">
+        <p>Дата проведения: {{ booked_event.event.date_of_events|date:"d.m.y" }}</p>
+        <p>Время: {{ booked_event.event.date_of_events|date:"H:i" }}</p>
+        <p>Описание: {{booked_event.event.content}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,33 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Список мероприятий</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-</head>
-<body>
-<header>
-    <h1>Мероприятия</h1>
-    <nav>
-        <a href="index.html">Главная</a>
-        {% if request.user.is_authenticated %}
-            <a href="profile.html" class="profile-link"><span class="username">{{request.user.username}}</span>Профиль</a>
-        {% else %}
-            <a href="profile.html" class="profile-link">Профиль</a>
-        {% endif %}
-
-        {% if request.user.is_authenticated %}
-        <div class="notification-container">
-            <button id="notif-bell" class="notification-bell" title="Уведомления">
-                🔔
-                <span class="badge" style="{% if message_status.exists %}display: block;{% else %}display: none;{% endif %}" id="notif-count"></span>
-            </button>
-        </div>
-        {% endif %}
-    </nav>
-</header>
+{% extends 'main/base.html' %}
+{% block content %}
 <main>
     <!-- Модальное окно -->
     <div id="notificationModal" class="modal" style="display: none;">
@@ -42,16 +14,15 @@
     <section class="events-grid">
         {% for event in object_list %}
             <article class="event-card">
-                <!--            <img src="https://via.placeholder.com/400x250?text=Концерт" alt="Концерт рок-группы"/>-->
+                <img src="{{ event.image.url }}" alt=""/>
                 <h2>{{event.title}}</h2>
                 <p>{{event.content}}</p>
                 <p class="date">Дата проведения: {{event.date_of_events|date:"d:m:Y"}} в {{event.date_of_events|date:"H:i"}}</p>
-                <a href="event_detail.html?id=1" class="btn">Подробнее</a>
+                <p>свободных мест - {{ event.free_places }}</p>
+                <a href="{% url 'events:detail' event.slug %}" class="btn">Подробнее</a>
             </article>
         {% endfor %}
     </section>
 </main>
 
-<script src="{% static 'js/script.js' %}"></script>
-</body>
-</html>
+{% endblock %}
