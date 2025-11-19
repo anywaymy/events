@@ -41,6 +41,7 @@ def book_event(request, event_id):
     try:
         Booking.objects.create(user=request.user, event=event)
         return JsonResponse({"status": "success", "message": "Забронировано!"})
+
     except IntegrityError: # Типо тут проверяем на уникальность
         return JsonResponse({'status': 'already_booked', 'message': 'Вы уже забронировали это мероприятие!'}, status=200)
     except Exception as e:
