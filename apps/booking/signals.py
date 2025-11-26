@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from .models import Booking
 from apps.users.models import UserMessage
 
+# После брони мероприятия, автоматом отправляем уведомление пользователю
 @receiver(post_save, sender=Booking)
 def send_success_booked_event(sender, instance, created, **kwargs):
     if created:

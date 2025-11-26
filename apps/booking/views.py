@@ -19,7 +19,7 @@ class EventDetailView(DetailView):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_authenticated:
-            context['message_status'] = UserMessage.objects.filter(user=self.request.user, is_read=False)
+            context['message_status'] = UserMessage.objects.filter(user=self.request.user, is_read=False).order_by("-created_at")
 
         return context
 

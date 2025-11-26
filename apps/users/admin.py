@@ -8,15 +8,6 @@ class UserMessageAdmin(admin.TabularInline):
     list_display = ('user', 'message')
     readonly_fields = ('created_at',)
 
-    # fieldsets = (
-    #     ('Сообщения пользователя', {
-    #         'fields': ('message',)
-    #     }),
-    #
-    #     ('Временные метки', {
-    #         'fields': ('created_at',)
-    #     }),
-    # )
 
 # админ панель для пользователя
 @admin.register(User)
