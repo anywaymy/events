@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import (UserLoginView, UserRegistrationView,
-                    UserPasswordResetView, UserPasswordResetConfirmView, UserProfileView,
-                    password_reset_complete, get_messages_from_db, logout)
+from .views import (UserLoginView, UserPasswordResetConfirmView,
+                    UserPasswordResetView, UserProfileView,
+                    UserRegistrationView, get_messages_from_db, logout,
+                    password_reset_complete)
 
 app_name = "users"
 
@@ -21,3 +22,4 @@ urlpatterns = [
     # получить сообщения
     path('get_messages/', get_messages_from_db, name="get_messages_from_db"),
 ]
+

@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import DetailView, ListView, TemplateView
+
+from apps.users.models import UserMessage
 
 from .models import Events
-from apps.users.models import UserMessage
+
 
 # View для отображения всех мероприятий
 class MainView(ListView):

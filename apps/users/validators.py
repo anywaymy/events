@@ -1,5 +1,7 @@
 import os
+
 from django.core.exceptions import ValidationError
+
 
 def validate_image_format(value):
     ext = os.path.splitext(value.name)[1].lower()
@@ -7,3 +9,4 @@ def validate_image_format(value):
 
     if ext not in valid_extensions:
         raise ValidationError(F'Недопустимый формат файлы {ext}. Разрешены только {', '.join(valid_extensions)}')
+

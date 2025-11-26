@@ -1,13 +1,13 @@
+from django.db import IntegrityError
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView
-from django.db import IntegrityError
-
-from .models import Booking
 
 from apps.main.models import Events
 from apps.users.models import User, UserMessage
+
+from .models import Booking
 
 
 class EventDetailView(DetailView):
@@ -47,3 +47,4 @@ def book_event(request, event_id):
     except Exception as e:
         # Логирование ошибки или обработка других исключений
         return JsonResponse({'status': 'error', 'message': 'Произошла ошибка при бронировании.'}, status=500)
+

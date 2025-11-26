@@ -1,7 +1,10 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Booking
+
 from apps.users.models import UserMessage
+
+from .models import Booking
+
 
 # После брони мероприятия, автоматом отправляем уведомление пользователю
 @receiver(post_save, sender=Booking)

@@ -4,9 +4,9 @@
 import os
 from email.policy import default
 from pathlib import Path
+
 from decouple import config
 from django.conf.global_settings import STATICFILES_DIRS
-
 
 # from django.conf.global_settings import INSTALLED_APPS
 

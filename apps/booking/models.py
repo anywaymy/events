@@ -1,7 +1,8 @@
 from django.db import models
 
-from apps.users.models import User
 from apps.main.models import Events
+from apps.users.models import User
+
 
 class Booking(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='bookings', help_text="Выберите пользователя")
@@ -16,3 +17,4 @@ class Booking(models.Model):
         verbose_name_plural = "бронирование"
         unique_together = ('user', 'event')
         ordering = ["-booking_date"]
+

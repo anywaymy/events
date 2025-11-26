@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import User, PasswordResetToken, UserMessage
+
+from .models import PasswordResetToken, User, UserMessage
+
 
 class UserMessageAdmin(admin.TabularInline):
     model = UserMessage

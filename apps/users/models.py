@@ -1,16 +1,17 @@
 import uuid
-from uuid import uuid4
 
-from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import EmailValidator
 from django.db import models
+from django.utils import timezone
 
 from apps.users.validators import validate_image_format
+
 
 # Функция, которая создаёт уникальную папку исходя из имени пользователя
 def user_directory_path(instance, filename):
     return f"users/{instance.username}/images/{filename}"
+
 
 # Модель пользователя
 class User(AbstractUser):
@@ -36,6 +37,7 @@ class User(AbstractUser):
         verbose_name_plural = "Пользователи"
         ordering = ["-created_at"]
 
+
 # Модель токена для восстановления пароля
 class PasswordResetToken(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
@@ -45,9 +47,9 @@ class PasswordResetToken(models.Model):
     def is_valid(self):
         return timezone.now() - self.created_at < timezone.timedelta(hours=24)
 
-
     def __str__(self):
         return f"Токен восстановления для пользователя {self.user}"
+
 
 # Модель сообщений для пользователя
 class UserMessage(models.Model):
@@ -59,5 +61,8 @@ class UserMessage(models.Model):
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, help_text="Дата создания")
 
+
 # class Profile(models.Model):
 #     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+
+

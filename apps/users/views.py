@@ -1,18 +1,17 @@
-from django.contrib.auth.forms import SetPasswordForm
-from django.http import HttpResponseRedirect, Http404, JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect
-
+from django.conf import settings
 from django.contrib import auth, messages
 from django.contrib.auth.views import LoginView
-from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, TemplateView, FormView, View, DetailView
 from django.core.mail import send_mail
-from django.conf import settings
+from django.http import Http404, HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, FormView,
+                                  TemplateView, View)
 
+from .forms import (StyledSetPasswordForm, UserLoginForm,
+                    UserPasswordResetForm, UserRegistrationForm)
+from .models import PasswordResetToken, User, UserMessage
 
-from .models import User, PasswordResetToken, UserMessage
-from .forms import (UserLoginForm, UserRegistrationForm,
-                    UserPasswordResetForm, StyledSetPasswordForm)
 
 # Аутентификация и логин пользователя
 class UserLoginView(LoginView):
@@ -31,9 +30,9 @@ class UserRegistrationView(CreateView):
         response = super().form_valid(form)
 
         # Создать успешное сообщение можно и таким образом (реализовано в signals)
-#         msg = '<div class="modal__item">Ваш аккаунт успешно создан</div>'
-#         user = form.instance
-#         UserMessage.objects.create(user=user, message=msg)
+        # msg = '<div class="modal__item">Ваш аккаунт успешно создан</div>'
+        # user = form.instance
+        # UserMessage.objects.create(user=user, message=msg)
         messages.success(self.request, f"Вы успешно зарегистрировались")
 
         return response

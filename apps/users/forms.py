@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, SetPasswordForm
+from django.contrib.auth.forms import (AuthenticationForm, SetPasswordForm,
+                                       UserCreationForm)
+
 from .models import User
 
 
